@@ -8,7 +8,15 @@
 
 * Low Poly
 * Red Planet
-* Ship Parts - Pale Blue
+* Pickup Truck Parts - Pale Blue
+  * Have Truck Cabin is reused escape pod
+  * Engine
+  * Tires
+  * Chassis
+  * Truck Bed
+  * Accesories (Gun Rack, Fuzzy Dice, Red Tape, Lights, Magnet)
+  * Computer
+  * Steering
 * TBD
   * Player
   * Mob
