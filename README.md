@@ -22,7 +22,7 @@
   * Mob
   * Tutorial Ship
   * Items
-  * Chicken
+  * Chicken (Egg)
   
 ## Development Tools
 
