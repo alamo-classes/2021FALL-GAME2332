@@ -2,38 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetGeneration : MonoBehaviour
+public class Planet : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
-        Planet p = new Planet();
-        p.InitAsIcosohedron();
-        p.Subdivide(2);
+        InitAsIcosohedron();
+        Subdivide(2);
+        GenerateMesh();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
-    public class Polygon
-    {
-        public List<int> myVerticies;
-        public Polygon(int a, int b, int c)
-        {
-            myVerticies = new List<int>() {a, b, c };
-        }
     }
-    public class Planet
-    {
-        public List<Polygon> myPolygons = new List<Polygon>();
-        public List<Vector3> myVertices = new List<Vector3>();
+        public Material myMaterial;
+        GameObject myPlanetMesh;
+
+
+        public class Polygon
+        {
+            public List<int> myVerticies;
+            public Polygon(int a, int b, int c)
+            {
+                myVerticies = new List<int>() { a, b, c };
+            }
+        }
+        public List<Polygon> myPolygons;
+        public List<Vector3> myVertices;
 
         public void InitAsIcosohedron()
         {
+            myPolygons = new List<Polygon>();
+            myVertices = new List<Vector3>();
             float t = (1.0f + Mathf.Sqrt(5.0f)) / 2.0f;
 
             myVertices.Add(new Vector3(-1, t, 0).normalized);
@@ -102,9 +104,9 @@ public class PlanetGeneration : MonoBehaviour
                 }
                 //replace all our old polygons with the new set of subdivided ones
                 myPolygons = newPolys;
+            }
         }
-        }
-        public int getMidPointIndex(Dictionary<int,int> cache, int indexA, int indexB)
+        public int getMidPointIndex(Dictionary<int, int> cache, int indexA, int indexB)
         {
             //we create a key out of the two original indices
             //by storing the smaller index in the upper two bytes
@@ -141,11 +143,64 @@ public class PlanetGeneration : MonoBehaviour
             //variable so that we can delete the old copy when we want
             //to generate a new planetmesh
 
-            //if (myPlanetMesh)
-            //    Destroy(myPlanetMesh);
+            if (myPlanetMesh)
+                Destroy(myPlanetMesh);
 
-            //myPlanetMesh = new GameObject("Planet mesh");
+            myPlanetMesh = new GameObject("Planet mesh");
+
+            MeshRenderer surfaceRenderer = myPlanetMesh.AddComponent<MeshRenderer>();
+            surfaceRenderer.material = myMaterial;
+
+            Mesh terrainMesh = new Mesh();
+            int vertexCount = myPolygons.Count * 3;
+            int[] indices = new int[vertexCount];
+
+            Vector3[] vertices = new Vector3[vertexCount];
+            Vector3[] normals = new Vector3[vertexCount];
+            Color32[] colors = new Color32[vertexCount];
+
+            Color32 green = new Color32(20, 255, 30, 255);
+            Color32 brown = new Color32(220, 150, 70, 255);
+            Color32 red = new Color32(161, 37, 27, 255);
+
+            for (int i = 0; i < myPolygons.Count; i++)
+            {
+                var poly = myPolygons[i];
+
+                indices[i * 3 + 0] = i * 3 + 0;
+                indices[i * 3 + 1] = i * 3 + 1;
+                indices[i * 3 + 2] = i * 3 + 2;
+
+                vertices[i * 3 + 0] = myVertices[poly.myVerticies[0]];
+                vertices[i * 3 + 1] = myVertices[poly.myVerticies[1]];
+                vertices[i * 3 + 2] = myVertices[poly.myVerticies[2]];
+
+                //here is where we assign each polygon a random color from inputed colors
+
+                Color32 polyColor = Color32.Lerp(green, brown, Random.Range(0.0f, 1.0f));
+
+                colors[i * 3 + 0] = polyColor;
+                colors[i * 3 + 1] = polyColor;
+                colors[i * 3 + 2] = polyColor;
+
+                //for now our planet is still perfectly spherical
+                //so the normal of each vertex is just like the vertex
+                //itself: pointing away from the origin.
+
+                normals[i * 3 + 0] = myVertices[poly.myVerticies[0]];
+                normals[i * 3 + 1] = myVertices[poly.myVerticies[1]];
+                normals[i * 3 + 2] = myVertices[poly.myVerticies[2]];
+            }
+
+            terrainMesh.vertices = vertices;
+            terrainMesh.normals = normals;
+            terrainMesh.colors32 = colors;
+
+            terrainMesh.SetTriangles(indices, 0);
+
+            MeshFilter terrainFilter = myPlanetMesh.AddComponent<MeshFilter>();
+            terrainFilter.mesh = terrainMesh;
+
+
         }
     }
-
-}
