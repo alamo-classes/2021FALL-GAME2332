@@ -28,3 +28,4 @@
 
 * Unity Version 2021.1.13f1
 * Github Desktop
+* Discord
