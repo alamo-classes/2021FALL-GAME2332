@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        rigidBody = GetComponent<rigidBody>();  //Get the reference to the rigidbody component
+        rigidBody = GetComponent<Rigidbody>();  //Get the reference to the rigidbody component
         inputs = Vector3.zero;                  //Set the vector to zero
     }
 
@@ -23,12 +23,15 @@ public class PlayerMovement : MonoBehaviour
         inputs.x = Input.GetAxis( "Horizontal" );
         inputs.z = Input.GetAxis( "Vertical" );
 
-        
-    }
+        //Rotate the player to face the direction theyre facing
+        if ( inputs != Vector3.zero)
+         transform.forward = inputs;
+
+   }
 
     void FixedUpdate()
     {
         //Using the inputs vector actually move the player
-        rigidBody.MovePosition( rigidBody.position + inputs * MoveSpeed * Time.fixedDeltaTime );
+        rigidBody.MovePosition( rigidBody.position + inputs * moveSpeed * Time.fixedDeltaTime );
     }
 }
