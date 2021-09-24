@@ -9,17 +9,21 @@
 ## Positive and behind us
 * setup
 
-# Positive
+## Positive
 * multi scenes -> ease of access
 * honesty
 
-# Middle Negative
+## Middle Negative
 * would like more communication on similar takes
 * don't like how the controls are being done seperate
 
-# Bottom Net
+## Bottom Negative
 * software technical difficulty
 * getting art stuss
 * trying to user the college computers
 * awkardness
 * my being rusty
+
+## Focus
+
+_Have one team member work on similar tasks until complete._
