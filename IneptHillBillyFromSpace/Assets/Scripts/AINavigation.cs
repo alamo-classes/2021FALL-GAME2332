@@ -29,16 +29,16 @@ public class AINavigation : MonoBehaviour
         {
             while(time >= idleTimer)
             {
-               agent.destination = idleWalk();
+               agent.destination = IdleWalk();
             }
         }
 
-
+     
 
     }
 
 
-    Vector3 idleWalk ()
+    Vector3 IdleWalk ()
     {
         time = 0;
 
@@ -51,6 +51,24 @@ public class AINavigation : MonoBehaviour
         return hit.position;
 
         
+    }
+
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if(col.gameObject.tag == "Player")
+        {
+            Idle = false;
+            agent.destination = col.transform.position;
+        }
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            Idle = true;
+        }
     }
 
 
