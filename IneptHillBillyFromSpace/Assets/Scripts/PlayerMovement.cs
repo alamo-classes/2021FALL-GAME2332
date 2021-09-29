@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public  float       moveSpeed = 5f;     //Player's movement speed
+    public  float       walkSpeed   = 5f;     //Player's normal movement speed
+    public  float       sprintSpeed = 10f;    //Player's movement speed when sprinting
+    private float       moveSpeed   = 5f;     //Storage for the player's current movement speed
+
+    public  float       jumpHeight  = 5f;     //How high the player jumps
+    public  LayerMask   jumpSurfaces;         //Layer masks that tag which gameObjects can be jumped on
+    private bool        isGrounded  = true;   //Boolean indicator telling if player is on the ground
+    private Transform   groundChecker = null;        //Child gameObj that tells if the player is on the ground
 
     private Rigidbody   rigidBody;      //Reference to the player's rigidbody component
     private Vector3     inputs;         //Storage for the player's input
@@ -14,18 +21,32 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();  //Get the reference to the rigidbody component
         inputs = Vector3.zero;                  //Set the vector to zero
+        groundChecker = transform.Find( "GroundChecker" ).GetComponent<Transform>(); //Get the reference to the groundChecker child gameObj.'s Transform comp.
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Set the vector to the Player's press of WASD
-        inputs.x = Input.GetAxis( "Horizontal" );
-        inputs.z = Input.GetAxis( "Vertical" );
+      //Check if the player is on the ground
+      isGrounded = Physics.CheckSphere( groundChecker.position, .2f, jumpSurfaces, QueryTriggerInteraction.Ignore );
 
-        //Rotate the player to face the direction theyre facing
-        if ( inputs != Vector3.zero)
-         transform.forward = inputs;
+      //Set the vector to the Player's press of WASD
+      inputs.x = Input.GetAxis( "Horizontal" );
+      inputs.z = Input.GetAxis( "Vertical" );
+
+      //Rotate the player to face the direction theyre facing
+      if ( inputs != Vector3.zero)
+       transform.forward = inputs;
+
+      //If the player hits the jump button AND is on the ground,
+      //    Launch them into the air
+      if ( Input.GetButtonDown("Jump") && isGrounded )
+         rigidBody.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+
+      //If the player holds down the sprint button,
+      //    Set their speed to sprintSpeed
+      if (Input.GetButtonDown("Sprint"))
+         Debug.Log("Sprint Pressed");
 
    }
 
