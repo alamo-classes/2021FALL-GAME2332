@@ -18,6 +18,8 @@ public class AINavigation : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
+        time = Random.Range(0.0f, 1.2f);
+
     }
     
     void Update()
