@@ -54,7 +54,7 @@ public class AINavigation : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerStay(Collider col)
     {
         if(col.gameObject.tag == "Player")
         {
@@ -67,6 +67,7 @@ public class AINavigation : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            time = 0;
             Idle = true;
         }
     }
