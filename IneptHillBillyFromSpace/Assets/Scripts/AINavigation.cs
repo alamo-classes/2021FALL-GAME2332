@@ -6,32 +6,32 @@ using UnityEngine.AI;
 public class AINavigation : MonoBehaviour
 {
 
-    public int walkRadius = 10;
-    public int idleTimer = 10;
+    public int walkRadius = 10; // radius that they can walk out to when idle
+    public int idleTimer = 10; // time it takes them to walk to a new position when idle
 
-    NavMeshAgent agent;
+    NavMeshAgent agent; // instantiate the navmesh agent
 
-    public bool Idle = true;
-    public float time = 0f;
+    public bool Idle = true; // bool for if the enemy is idle
+    public float time = 0f; // used to count time
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>(); // assign the nav mesh
 
-        time = Random.Range(0.0f, 1.2f);
+        time = Random.Range(0.0f, 1.2f); // choose random starting time so that groups of enemies dont all move in unison
 
     }
     
     void Update()
     {
-        time += Time.deltaTime;
+        time += Time.deltaTime; // increases time by seconds
 
 
-        if (Idle)
+        if (Idle) // if allowed to idle
         {
-            while(time >= idleTimer)
+            while(time >= idleTimer) // while the time is less than their idle time
             {
-               agent.destination = IdleWalk();
+               agent.destination = IdleWalk(); // set destination of nav mesh agent to random position
             }
         }
 
@@ -40,11 +40,11 @@ public class AINavigation : MonoBehaviour
     }
 
 
-    Vector3 IdleWalk ()
+    Vector3 IdleWalk () // chooses a random position to walk to
     {
         time = 0;
 
-        Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
+        Vector3 randomDirection = Random.insideUnitSphere * walkRadius; // sets a random point in a circle with the radius of walkradius
 
         randomDirection += transform.position;
         NavMeshHit hit;
@@ -56,7 +56,7 @@ public class AINavigation : MonoBehaviour
     }
 
 
-    private void OnTriggerStay(Collider col)
+    private void OnTriggerStay(Collider col) // when object with tag "Player" is in a trigger collider stop idling and move towars it
     {
         if(col.gameObject.tag == "Player")
         {
@@ -65,11 +65,11 @@ public class AINavigation : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider col)
+    private void OnTriggerExit(Collider col) // when object with player tag has exited wait and idle
     {
         if (col.gameObject.tag == "Player")
         {
-            time = 0;
+            time = Random.Range(0.0f, 1.2f); // make time random again so if player evades group of ai they wont be in unison when idle
             Idle = true;
         }
     }
