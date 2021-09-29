@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 1277654447}
   - component: {fileID: 1277654446}
   - component: {fileID: 1277654445}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 1375171321}
   - component: {fileID: 1375171320}
   - component: {fileID: 1375171319}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

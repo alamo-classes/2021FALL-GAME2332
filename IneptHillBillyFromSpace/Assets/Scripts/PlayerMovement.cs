@@ -45,8 +45,13 @@ public class PlayerMovement : MonoBehaviour
 
       //If the player holds down the sprint button,
       //    Set their speed to sprintSpeed
-      if (Input.GetButtonDown("Sprint"))
-         Debug.Log("Sprint Pressed");
+      if ( Input.GetButtonDown("Sprint") )
+         moveSpeed = sprintSpeed;
+      
+      //If the player let go of sprint button,
+      //    Set their speed back to walkSpeed
+      if ( Input.GetButtonUp("Sprint") )
+         moveSpeed = walkSpeed;
 
    }
 
