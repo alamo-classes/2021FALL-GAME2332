@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody   rigidBody;      //Reference to the player's rigidbody component
     private Vector3     inputs;         //Storage for the player's input
 
+    Vector3 v;
 
     void Awake()
     {
@@ -20,12 +21,18 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Set the vector to the Player's press of WASD
-        inputs.x = Input.GetAxis( "Horizontal" );
-        inputs.z = Input.GetAxis( "Vertical" );
+        Vector3 movementX = Input.GetAxis( "Horizontal" ) *  Camera.main.transform.right;
+        Vector3 movementZ = Input.GetAxis( "Vertical" ) *  Camera.main.transform.forward;
+
+        inputs = movementX + movementZ;
 
         //Rotate the player to face the direction theyre facing
         if ( inputs != Vector3.zero)
          transform.forward = inputs;
+
+
+        v = transform.rotation.eulerAngles;                 // stops player object from leaning with Camera
+        transform.rotation = Quaternion.Euler(0, v.y, 0);
 
    }
 
