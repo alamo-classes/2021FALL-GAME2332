@@ -949,9 +949,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2375755396367152665, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+      propertyPath: jumpSurfaces.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2375755396367152671, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
       propertyPath: m_Name
       value: Prototype_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375755396367152671, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
