@@ -76,9 +76,14 @@ public class GravityAttractor : MonoBehaviour
 
     void OnTriggerEnter( Collider other )
     {
+        Debug.Log("A Body has entered the gravatational field!");
+
         //If the other obj. is a GravityBody
         //      Then set it's current attraction to THIS
         if ( other.GetComponent<GravityBody>() != null )
+        {
+            Debug.Log("The attractor for the body has been set");
             other.GetComponent<GravityBody>().attractor = this;
+        }
     }
 }
