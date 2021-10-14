@@ -21,12 +21,12 @@ public class GravityAttractor : MonoBehaviour
     }
 
     //Uses a Raycast to get the surface norm relative to the body's up
-    Vector3 findSurface( RigidBody attractedBody )
+    Vector3 findSurface( Rigidbody attractedBody )
     {
         float distance = Vector3.Distance( this.transform.position, attractedBody.transform.position );
         Vector3 surfaceNorm = Vector3.zero;
 
-        Raycast hit;
+        RaycastHit hit;
         if ( Physics.Raycast( attractedBody.transform.position, attractedBody.transform.up, out hit, distance ) )
         {
             surfaceNorm = hit.normal;
@@ -36,7 +36,7 @@ public class GravityAttractor : MonoBehaviour
     }
 
     //Aligns the attracted gravityBody's rotation to the surface of the attractor's body
-    void orientBody( RigidBody attractedBody, Vector3 surfaceNorm )
+    void orientBody( Rigidbody attractedBody, Vector3 surfaceNorm )
     {
         attractedBody.transform.localRotation = Quaternion.FromToRotation( attractedBody.transform.up, surfaceNorm ) * attractedBody.rotation;
     }
@@ -46,7 +46,7 @@ public class GravityAttractor : MonoBehaviour
     public void attract( Rigidbody attractedBody )
     {
         Vector3 pullVec = findSurface( attractedBody ); //Find the surface norm relative to the body
-        orientBody( attractedBody ); //Orient the body to the surface it's on
+        orientBody( attractedBody, pullVec ); //Orient the body to the surface it's on
 
         //Calculate the magnitude, direction, etc. that attractor needs to pull the body in
         float pullForce = 0f;
@@ -71,7 +71,7 @@ public class GravityAttractor : MonoBehaviour
         pullVec = attractedBody.transform.position - gravCenter;
 
         //Pull in that direction
-        attractedBody.addForce( pullVec.normalized * pullForce * Time.deltaTime );
+        attractedBody.AddForce( pullVec.normalized * pullForce * Time.deltaTime );
     }
 
     void OnTriggerEnter( Collider other )

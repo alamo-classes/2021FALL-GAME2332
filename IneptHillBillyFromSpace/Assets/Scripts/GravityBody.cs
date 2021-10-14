@@ -5,7 +5,7 @@ using UnityEngine;
 public class GravityBody : MonoBehaviour
 {
     public  GravityAttractor    attractor;      //The obj that THIS will be attracted to gravitationally    
-    public  RigidBody           rigidBody;      //The Rigidbody component of THIS game obj
+    public  Rigidbody           rigidBody;      //The Rigidbody component of THIS game obj
 
     void Awake()
     {
