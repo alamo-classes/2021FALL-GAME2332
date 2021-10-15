@@ -20,8 +20,11 @@ public class PlayerPickUp : MonoBehaviour
 
     void Update()
     {
-
-
+         //=====================================================================================
+         // Do you need this?
+         // I think you could get away with just the gameobject references
+         // Also you don't need to set the position every update if it's a child of the slot
+         // - JR
         if (slot1 != null)
         {
             slot1.transform.position = t1.transform.position;
@@ -38,15 +41,17 @@ public class PlayerPickUp : MonoBehaviour
 
         if (canPickUp && carrying < 2) // checking if player can pick up something and if inventory is full or not.
         {
-            if(Input.GetKeyDown(KeyCode.F))
-            {
-                AddToPlayer(inRange);
-            }
+            //Input.GetKeyDown(KeyCode.F)
+            if (Input.GetButtonDown("PickUp"))
+               {
+                   AddToPlayer(inRange);
+               }
         }
         
         if(carrying >= 1) // if player has at least one object
         {
-            if (Input.GetKeyDown(KeyCode.G))
+            //Input.GetKeyDown(KeyCode.G)
+            if (Input.GetButtonDown("Drop"))
             {
                 DropItem();
             }
@@ -60,11 +65,15 @@ public class PlayerPickUp : MonoBehaviour
     {
         if (slot1 == null)
         {
+         //====================================================================
+         // look into transform.setparent in unity api
+         //    Then you would need to disable the collider and RB
+         // - JR
             slot1 = Instantiate(obj); // create clone of object
 
             Destroy(obj); // destroy the original
 
-            slot1.GetComponent<Collider>().isTrigger = true; // make collider a trigger so it doesnt interfere with the player
+            slot1.GetComponent<Collider>().enabled = false; // Disable the collider
 
             carrying++; // increment the carry amount
             return;
@@ -75,7 +84,7 @@ public class PlayerPickUp : MonoBehaviour
  
             Destroy(obj);
 
-            slot2.GetComponent<Collider>().isTrigger = true;
+            slot2.GetComponent<Collider>().enabled = true;
 
             carrying++;
         }
@@ -84,16 +93,22 @@ public class PlayerPickUp : MonoBehaviour
 
     void DropItem() // drops the item that is held
     {
+         //============================================================
+         // if the object is a child you have disconnect it by setting the parent to null
+         //       transform.parent == null or SetParent ( not sure if it will accept null as a param )
+         // then reenable the collider and RB
+         // Maybe set the item's position to a specific one?
+         // - JR
         if (slot1 != null) // sees if there is an object in the slot
         {
-            slot1.GetComponent<Collider>().isTrigger = false; // make object collidable again
+            slot1.GetComponent<Collider>().enabled = true; // make object collidable again
             slot1 = null; // remove item from slot
             carrying--; // remove 1 from carry amount
 
         }
         else if (slot2 != null)
         {
-            slot2.GetComponent<Collider>().isTrigger = false;
+            slot2.GetComponent<Collider>().enabled = false;
             slot2 = null;
             carrying--;
         }
@@ -104,6 +119,9 @@ public class PlayerPickUp : MonoBehaviour
     {
         if(col.tag == "Collectable") // if it is tagged correctly
         {
+            //==============================================================
+            // Can't you just use the carrying var to see if you have an empty slot?
+            // - JR
             if (col.gameObject != slot1 || col.gameObject != slot2) // if it is not = to an object that is already being carried
             {
                 canPickUp = true;         // allow pickup
