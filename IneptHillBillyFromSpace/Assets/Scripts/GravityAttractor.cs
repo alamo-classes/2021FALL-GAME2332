@@ -27,7 +27,7 @@ public class GravityAttractor : MonoBehaviour
         Vector3 surfaceNorm = Vector3.zero;
 
         RaycastHit hit;
-        if ( Physics.Raycast( attractedBody.transform.position, attractedBody.transform.up, out hit, distance ) )
+        if ( Physics.Raycast( attractedBody.transform.position, -attractedBody.transform.up, out hit, distance ) )
         {
             surfaceNorm = hit.normal;
         }
@@ -74,16 +74,19 @@ public class GravityAttractor : MonoBehaviour
         attractedBody.AddForce( pullVec.normalized * pullForce * Time.deltaTime );
     }
 
-    void OnTriggerEnter( Collider other )
-    {
-        Debug.Log("A Body has entered the gravatational field!");
+    //void OnTriggerEnter( Collider other )
+    //{
+    //    Debug.Log("A Body has entered the gravatational field!");
 
-        //If the other obj. is a GravityBody
-        //      Then set it's current attraction to THIS
-        if ( other.GetComponent<GravityBody>() != null )
-        {
-            Debug.Log("The attractor for the body has been set");
-            other.GetComponent<GravityBody>().attractor = this;
-        }
-    }
+    //  GravityBody body = other.GetComponent<GravityBody>();
+    //  Debug.Log( "The Body's reference is: "+ body != null );
+
+    //    //If the other obj. is a GravityBody
+    //    //      Then set it's current attraction to THIS
+    //    if ( body != null )
+    //    {
+    //        Debug.Log("The attractor for the body has been set");
+    //        other.GetComponent<GravityBody>().attractor = this;
+    //    }
+    //}
 }
