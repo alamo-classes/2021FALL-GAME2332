@@ -293,6 +293,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2efa99eeabdf60e4d904c9f511f8fb1d, type: 3}
+--- !u!1 &257764110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 257764111}
+  m_Layer: 0
+  m_Name: DropPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &257764111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257764110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 992764123}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &293572979 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2174530101826551872, guid: 64b1ef090daa2bb428fc88afbc45b88b, type: 3}
@@ -330,10 +360,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrying: 0
   canPickUp: 0
-  slot1: {fileID: 0}
-  slot2: {fileID: 0}
   t1: {fileID: 2066566625}
   t2: {fileID: 1453311834}
+  dropPos: {fileID: 257764111}
+  slot1: {fileID: 0}
+  slot2: {fileID: 0}
 --- !u!1 &525555201
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +652,7 @@ Transform:
   m_Children:
   - {fileID: 2066566625}
   - {fileID: 1453311834}
+  - {fileID: 257764111}
   m_Father: {fileID: 293572980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -794,7 +826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4527555138976607235, guid: 64b1ef090daa2bb428fc88afbc45b88b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.12155531
+      value: 0.12155532
       objectReference: {fileID: 0}
     - target: {fileID: 4527555139068089897, guid: 64b1ef090daa2bb428fc88afbc45b88b, type: 3}
       propertyPath: m_LocalPosition.z

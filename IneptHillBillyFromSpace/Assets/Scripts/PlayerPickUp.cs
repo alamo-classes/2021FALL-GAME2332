@@ -9,39 +9,31 @@ public class PlayerPickUp : MonoBehaviour
 
     public bool canPickUp = false; // if an object that can be picked up is in range
 
-    public GameObject slot1; // storage for an object
-    public GameObject slot2;
-
     public Transform t1; // where the picked up object will go when held
     public Transform t2;
+    public Transform dropPos; // place where object will be dropped
+
+    public GameObject slot1; // references to gameobjects held
+    public GameObject slot2;
 
     GameObject inRange = null; // reference to the object that is in range
     
 
     void Update()
     {
-         //=====================================================================================
-         // Do you need this?
-         // I think you could get away with just the gameobject references
-         // Also you don't need to set the position every update if it's a child of the slot
-         // - JR
-        if (slot1 != null)
-        {
-            slot1.transform.position = t1.transform.position;
-            
-        }
-                                                                        // sets the position of the held items to stick to player
+
+        if(slot1 != null)
+            slot1.transform.position = t1.transform.position; // needed to make sure that objects held dont "drag" behind the player when moving
         if (slot2 != null)
-        {
             slot2.transform.position = t2.transform.position;
-        }
+
 
 
 
 
         if (canPickUp && carrying < 2) // checking if player can pick up something and if inventory is full or not.
         {
-            //Input.GetKeyDown(KeyCode.F)
+
             if (Input.GetButtonDown("PickUp"))
                {
                    AddToPlayer(inRange);
@@ -50,7 +42,7 @@ public class PlayerPickUp : MonoBehaviour
         
         if(carrying >= 1) // if player has at least one object
         {
-            //Input.GetKeyDown(KeyCode.G)
+
             if (Input.GetButtonDown("Drop"))
             {
                 DropItem();
@@ -63,28 +55,36 @@ public class PlayerPickUp : MonoBehaviour
 
     void AddToPlayer(GameObject obj) // "picks up" object 
     {
-        if (slot1 == null)
+        if (carrying == 0)
         {
-         //====================================================================
-         // look into transform.setparent in unity api
-         //    Then you would need to disable the collider and RB
-         // - JR
-            slot1 = Instantiate(obj); // create clone of object
+          
+            slot1 = obj;
 
-            Destroy(obj); // destroy the original
+            obj.GetComponent<Collider>().enabled = false; // Disable the collider
 
-            slot1.GetComponent<Collider>().enabled = false; // Disable the collider
+            obj.GetComponent<Rigidbody>().useGravity = false; // disable physics
+
+            obj.transform.position = t1.position; // set position to player holding spot
+
+            obj.transform.SetParent(transform); // set player as parent
+
 
             carrying++; // increment the carry amount
             return;
         }
-        else if (obj != slot1)
+        else if (carrying == 1)
         {
-            slot2 = Instantiate(obj);
- 
-            Destroy(obj);
 
-            slot2.GetComponent<Collider>().enabled = true;
+            slot2 = obj;
+
+            obj.GetComponent<Collider>().enabled = false; // Disable the collider
+
+            obj.GetComponent<Rigidbody>().useGravity = false; // disable physics
+
+            obj.transform.position = t2.position; // set position to player holding spot
+
+            obj.transform.SetParent(transform); // set player as parent
+
 
             carrying++;
         }
@@ -93,25 +93,40 @@ public class PlayerPickUp : MonoBehaviour
 
     void DropItem() // drops the item that is held
     {
-         //============================================================
-         // if the object is a child you have disconnect it by setting the parent to null
-         //       transform.parent == null or SetParent ( not sure if it will accept null as a param )
-         // then reenable the collider and RB
-         // Maybe set the item's position to a specific one?
-         // - JR
-        if (slot1 != null) // sees if there is an object in the slot
-        {
-            slot1.GetComponent<Collider>().enabled = true; // make object collidable again
-            slot1 = null; // remove item from slot
-            carrying--; // remove 1 from carry amount
 
-        }
-        else if (slot2 != null)
+        if(carrying == 2)
         {
-            slot2.GetComponent<Collider>().enabled = false;
-            slot2 = null;
+            slot2.GetComponent<Collider>().enabled = true; // Disable the collider
+
+            slot2.GetComponent<Rigidbody>().useGravity = true; // disable physics
+
+            slot2.transform.position = dropPos.position; // set position to be dropped
+
+            slot2.transform.SetParent(null); // make object child to nothing 
+
+            slot2 = null; // make storage empty for new item
+
             carrying--;
         }
+        else if (carrying == 1)
+        {
+            slot1.GetComponent<Collider>().enabled = true; // Disable the collider
+
+            slot1.GetComponent<Rigidbody>().useGravity = true; // disable physics
+
+            slot1.transform.position = dropPos.position; // set position to be dropped
+
+            slot1.transform.SetParent(null); // make object child to nothing 
+
+            slot1 = null; // make storage empty for new item
+
+            carrying--;
+        }
+
+
+
+
+
     }
 
 
