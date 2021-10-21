@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Rotate the player to face the direction theyre facing
         if ( inputs != Vector3.zero)
-       transform.forward = inputs;
+            transform.forward = inputs;
 
       //If the player hits the jump button AND is on the ground,
       //    Launch them into the air
@@ -64,6 +64,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Using the inputs vector actually move the player
-        rigidBody.MovePosition( rigidBody.position + inputs * moveSpeed * Time.fixedDeltaTime );
+        rigidBody.MovePosition( rigidBody.position + transform.TransformDirection( inputs ) * moveSpeed * Time.fixedDeltaTime );
     }
 }
