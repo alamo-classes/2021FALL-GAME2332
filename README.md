@@ -29,4 +29,4 @@
 * Unity Version 2021.1.13f1
 * Github Desktop
 * Discord
-* [Rules Of Engagement](https://github.com/alamo-classes/2021FALL-GAME2332/blob/main/RuleOfEngagement.md)
+* [Rules Of Engagement](https://github.com/alamo-classes/2021FALL-GAME2332/blob/main/docs/RuleOfEngagement.md)
