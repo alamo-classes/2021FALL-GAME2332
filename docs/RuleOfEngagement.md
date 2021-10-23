@@ -3,7 +3,7 @@
 ## Player Input
 When getting input from the player controls, Use the Input Manager instead of using the KeyCodes
 
-```
+```csharp
   //Should
   if ( Input.GetButtonDown( "NameOfButton" )
       //Player Action
