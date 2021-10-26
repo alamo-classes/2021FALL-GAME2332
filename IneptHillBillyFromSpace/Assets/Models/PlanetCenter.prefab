@@ -43,6 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649d0a330a6b4bc47bce49490754742b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySubDivideCount: 2
-  myMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  myVertices: []
+  resolution: 90
+  autoUpdate: 1
+  faceRenderMask: 0
+  shapeSettings: {fileID: 11400000, guid: 1f5952e0d591791438a681dbff9fdc98, type: 2}
+  colourSettings: {fileID: 11400000, guid: 1f2e83d7e0a7edd48adf51b70d3b2aff, type: 2}
+  shapeSettingsFoldout: 1
+  colourSettingsFoldout: 1
+  meshFilters:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
