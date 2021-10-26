@@ -45,45 +45,45 @@ public class GravityAttractor : MonoBehaviour
     //  Called by the GravityBody script
     public void attract( Rigidbody attractedBody )
     {
-      Vector3 pullVec = findSurface(attractedBody); //Find the surface norm relative to the body
-      orientBody(attractedBody, pullVec); //Orient the body to the surface it's on
+        //Vector3 pullVec = findSurface(attractedBody); //Find the surface norm relative to the body
+        //orientBody(attractedBody, pullVec); //Orient the body to the surface it's on
 
-      //Calculate the magnitude, direction, etc. that attractor needs to pull the body in
-      float pullForce = 0f;
+        ////Calculate the magnitude, direction, etc. that attractor needs to pull the body in
+        //float pullForce = 0f;
 
-      //If the force pulling the bodies does NOT get weaker
-      //      Then the force is the same
-      //Else
-      //      The force is greater the closer the body is
-      if (!weakenByDistance)
-      {
-         //Inverse square law -> grav const * ( (mass1 * mass2) / distance^2 )
-         pullForce = gravForce * ((attractorMass * attractedBody.mass)
-             / Mathf.Pow(Vector3.Distance(this.transform.position + gravCenter, attractedBody.transform.position), 2));
-      }
-      else
-      {
-         pullForce = gravForce * (attractorMass * attractedBody.mass)
-             * Vector3.Distance(this.transform.position, attractedBody.transform.position);
-      }
+        ////If the force pulling the bodies does NOT get weaker
+        ////      Then the force is the same
+        ////Else
+        ////      The force is greater the closer the body is
+        //if (!weakenByDistance)
+        //{
+        //   //Inverse square law -> grav const * ( (mass1 * mass2) / distance^2 )
+        //   pullForce = gravForce * ((attractorMass * attractedBody.mass)
+        //       / Mathf.Pow(Vector3.Distance(this.transform.position + gravCenter, attractedBody.transform.position), 2));
+        //}
+        //else
+        //{
+        //   pullForce = gravForce * (attractorMass * attractedBody.mass)
+        //       * Vector3.Distance(this.transform.position, attractedBody.transform.position);
+        //}
 
-      //Get distance vector b/w body and planet's gravitational center
-      pullVec = attractedBody.transform.position - this.transform.position;
+        ////Get distance vector b/w body and planet's gravitational center
+        //pullVec = attractedBody.transform.position - this.transform.position;
 
-      //Pull in that direction
-      attractedBody.AddForce(pullVec.normalized * pullForce * Time.deltaTime);
+        ////Pull in that direction
+        //attractedBody.AddForce(pullVec.normalized * pullForce * Time.deltaTime);
 
-      ////Get the upward direction based from the position of the body and the center of the attractor
-      //Vector3 gravityUp = ( attractedBody.transform.position - this.transform.position ).normalized;
-      //Vector3 bodyUp = attractedBody.transform.up; //Get the upward direction based on the body
+        //Get the upward direction based from the position of the body and the center of the attractor
+        Vector3 gravityUp = (attractedBody.transform.position - this.transform.position).normalized;
+        Vector3 bodyUp = attractedBody.transform.up; //Get the upward direction based on the body
 
-      //attractedBody.AddForce(gravityUp * gravForce); //Pull the body towards the attractor
+        attractedBody.AddForce(gravityUp * gravForce); //Pull the body towards the attractor
 
-      ////Get the Rotation that we want to orient the body to
-      //Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * attractedBody.transform.rotation;
-      //attractedBody.transform.rotation = Quaternion.Slerp(attractedBody.transform.rotation, targetRotation,
-      //      50 * Time.deltaTime); //Rotate the body to the targetRotation over time
-   }
+        //Get the Rotation that we want to orient the body to
+        Quaternion targetRotation = Quaternion.FromToRotation(bodyUp, gravityUp) * attractedBody.transform.rotation;
+        attractedBody.transform.rotation = Quaternion.Slerp(attractedBody.transform.rotation, targetRotation,
+              50 * Time.deltaTime); //Rotate the body to the targetRotation over time
+    }
 
    void OnTriggerEnter( Collider other )
    {
