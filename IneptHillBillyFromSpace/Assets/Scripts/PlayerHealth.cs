@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public double health;
-    public double fatigue;
-    public double fatigueDrainRate;
+    public Image healthBar;
+    public float maxHealth = 100f;
+    float health;
+
+    public float fatigue;
+    public float fatigueDrainRate;
     bool isPlayerDead = false;
-    // Start is called before the first frame update
     void Start()
     {
-        
+        healthBar = GetComponent<Image>();
+        health = maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        health -= .1f;
+        healthBar.fillAmount = health / maxHealth;
         if (!(fatigueDrainRate <= 0))
         {
             fatigueDrain();
