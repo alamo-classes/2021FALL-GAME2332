@@ -45,20 +45,20 @@ public class PlayerMovement : MonoBehaviour
         //if ( inputs != Vector3.zero)
         //    transform.forward = inputs;
 
-      //If the player hits the jump button AND is on the ground,
-      //    Launch them into the air
-      if ( Input.GetButtonDown("Jump") && isGrounded )
-         rigidBody.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
-
-      //If the player holds down the sprint button,
-      //    Set their speed to sprintSpeed
-      if ( Input.GetButtonDown("Sprint") )
-         moveSpeed = sprintSpeed;
-      
-      //If the player let go of sprint button,
-      //    Set their speed back to walkSpeed
-      if ( Input.GetButtonUp("Sprint") )
-         moveSpeed = walkSpeed;
+        //If the player hits the jump button AND is on the ground,
+        //    Launch them into the air
+        if ( Input.GetButtonDown("Jump") && isGrounded )
+           rigidBody.AddForce( transform.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange );
+        
+        //If the player holds down the sprint button,
+        //    Set their speed to sprintSpeed
+        if ( Input.GetButtonDown("Sprint") )
+           moveSpeed = sprintSpeed;
+        
+        //If the player let go of sprint button,
+        //    Set their speed back to walkSpeed
+        if ( Input.GetButtonUp("Sprint") )
+           moveSpeed = walkSpeed;
 
    }
 
