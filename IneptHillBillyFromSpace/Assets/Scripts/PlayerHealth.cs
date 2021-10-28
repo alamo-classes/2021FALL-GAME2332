@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     float healthDrainRate = 0f;
 
     public float maxFatigue;
-    public float fatigue = 100f;
+    float fatigue;
     public float fatigueDrainRate = .001f;
     bool isPlayerDead = false;
     void Start()
