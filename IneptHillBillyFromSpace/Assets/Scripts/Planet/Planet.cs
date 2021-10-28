@@ -33,6 +33,10 @@ public class Planet : MonoBehaviour
         GeneratePlanet();
 
         MeshCollider[] colliders = FindObjectsOfType<MeshCollider>();
+        for (int i = 0; i < colliders.Length; i++ )
+        {
+            GameObject.Destroy(colliders[i]);
+        }
     }
     void Initialize()
     {
