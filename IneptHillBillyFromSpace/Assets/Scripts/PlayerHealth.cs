@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
         {
             //player loses health or enter no oxygen state
             Debug.Log("fatigue is 0");
-            healthDrainRate = .01f;
+            healthDrainRate = .001f;
             fatigueDrainRate = 0;
         }
 
