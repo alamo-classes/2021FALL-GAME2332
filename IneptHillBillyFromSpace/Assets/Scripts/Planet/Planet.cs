@@ -31,8 +31,6 @@ public class Planet : MonoBehaviour
     private void Start()
     {
         GeneratePlanet();
-
-        MeshCollider[] colliders = FindObjectsOfType<MeshCollider>();
     }
     void Initialize()
     {
