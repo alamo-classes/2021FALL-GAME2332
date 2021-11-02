@@ -37,15 +37,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementZ = Input.GetAxis("Vertical") * Camera.main.transform.forward;
 
         inputs = movementX + movementZ;
-        //inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-        ////Rotate the player to face the direction theyre facing
-        //if ( inputs != Vector3.zero )
-        //{
-        //   transform.forward = inputs;
-        //   orientBody();
-        //}
-        
+        //Rotate the player to face the direction theyre facing
+        if ( inputs != Vector3.zero )
+        {
+            float rotation = ( Input.GetAxisRaw("Horizontal") + Input.GetAxisRaw("Vertical") ) * 5f;
+            transform.localRotation *= Quaternion.Euler( 0f, rotation, 0f );
+        }
+
         //If the player hits the jump button AND is on the ground,
         //    Launch them into the air
         if ( Input.GetButtonDown( "Jump" ) && isGrounded )
