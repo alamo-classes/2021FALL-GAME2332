@@ -41,8 +41,8 @@ public class PlayerMovement : MonoBehaviour
         //Rotate the player to face the direction theyre facing
         if ( inputs != Vector3.zero )
         {
-            float rotation = ( Input.GetAxisRaw("Horizontal") + Input.GetAxisRaw("Vertical") ) * 5f;
-            transform.localRotation *= Quaternion.Euler( 0f, rotation, 0f );
+           Vector3 newForward = transform.forward + inputs;
+           transform.forward = newForward;
         }
 
         //If the player hits the jump button AND is on the ground,
@@ -67,14 +67,5 @@ public class PlayerMovement : MonoBehaviour
     {
         //Using the inputs vector actually move the player
         rigidBody.MovePosition( rigidBody.position + inputs * moveSpeed * Time.fixedDeltaTime );
-    }
-
-    void orientBody()
-    {
-      if ( gravBody.attractor != null )
-      {
-         Vector3 surfaceNorm = gravBody.attractor.findSurfaceNorm( rigidBody );
-         gravBody.attractor.orientBody( rigidBody, surfaceNorm );
-      }
     }
 }
