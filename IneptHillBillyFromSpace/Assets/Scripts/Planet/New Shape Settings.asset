@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5fdcee2449080a4ca5a1b63f262f519, type: 3}
   m_Name: New Shape Settings
   m_EditorClassIdentifier: 
-  planetRadius: 2000
+  planetRadius: 20
   noiseLayers:
   - enabled: 1
     useFirstLayerAsMask: 0
