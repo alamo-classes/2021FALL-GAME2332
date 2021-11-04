@@ -28,21 +28,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      //Check if the player is on the ground
-      isGrounded = Physics.CheckSphere( groundChecker.position, .2f, jumpSurfaces, QueryTriggerInteraction.Ignore );
+        //Check if the player is on the ground
+        isGrounded = Physics.CheckSphere( groundChecker.position, .2f, jumpSurfaces, QueryTriggerInteraction.Ignore );
 
         //Set the vector to the Player's press of WASD
-        Vector3 movementX = Input.GetAxis("Horizontal") * Camera.main.transform.right;
-        Vector3 movementZ = Input.GetAxis("Vertical") * Camera.main.transform.forward;
+        //Vector3 movementX = Input.GetAxis("Horizontal");* Camera.main.transform.right;
+        //Vector3 movementZ = Input.GetAxis("Vertical"); * Camera.main.transform.forward;
 
-        inputs = movementX + movementZ;
+        //inputs = movementX + movementZ;
+        inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-        v = transform.rotation.eulerAngles;                 // stops player object from leaning with Camera
-        transform.rotation = Quaternion.Euler(0, v.y, 0);
+        //v = transform.rotation.eulerAngles;                 // stops player object from leaning with Camera
+        //transform.rotation = Quaternion.Euler(0, v.y, 0);
 
-        //Rotate the player to face the direction theyre facing
-        if ( inputs != Vector3.zero)
-       transform.forward = inputs;
+        ////Rotate the player to face the direction theyre facing
+        //if ( inputs != Vector3.zero)
+        //    transform.forward = inputs;
 
       //If the player hits the jump button AND is on the ground,
       //    Launch them into the air
@@ -64,6 +65,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         //Using the inputs vector actually move the player
-        rigidBody.MovePosition( rigidBody.position + inputs * moveSpeed * Time.fixedDeltaTime );
+        rigidBody.MovePosition( rigidBody.position + transform.TransformDirection( inputs ) * moveSpeed * Time.fixedDeltaTime );
     }
 }
