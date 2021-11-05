@@ -24,6 +24,18 @@
   * Items
   * Chicken
   
+  ## sounds
+  * Banjo sound on death
+  * Calling the car parts thing ma jigs
+  * walking sounds
+  * hitting tree sound
+  * enemy walking noise
+  * enemy screech noise
+  * adding car parts sound
+  * car completed sound
+  * jump and sprint noise
+  * lumberjack whistle
+  
 ## Development Tools
 
 * Unity Version 2021.1.13f1
