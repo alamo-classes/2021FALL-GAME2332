@@ -39,11 +39,11 @@ public class PlayerMovement : MonoBehaviour
         inputs = movementX + movementZ;
 
         //Rotate the player to face the direction theyre facing
-        if ( inputs != Vector3.zero )
-        {
-           Vector3 newForward = transform.forward + inputs;
-           transform.forward = newForward;
-        }
+        //if ( inputs != Vector3.zero )
+        //{
+        //   Vector3 newForward = transform.forward + inputs;
+        //   transform.forward = newForward;
+        //}
 
         //If the player hits the jump button AND is on the ground,
         //    Launch them into the air
