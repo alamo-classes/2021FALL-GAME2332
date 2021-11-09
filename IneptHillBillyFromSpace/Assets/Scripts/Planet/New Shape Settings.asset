@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5fdcee2449080a4ca5a1b63f262f519, type: 3}
   m_Name: New Shape Settings
   m_EditorClassIdentifier: 
-  planetRadius: 20
+  planetRadius: 2000
   noiseLayers:
   - enabled: 1
     useFirstLayerAsMask: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
         roughness: 2.34
         persistence: 0.56
         centre: {x: 0, y: 3.14, z: 1.22}
-        minValue: 1.06
+        minValue: 1.24
       ridgidNoiseSettings:
         strength: 0
         numLayers: 0
@@ -41,180 +41,12 @@ MonoBehaviour:
       filterType: 0
       simpleNoiseSettings:
         strength: 0.36
-        numLayers: 5
+        numLayers: 1
         baseRoughness: 1.08
         roughness: 2.34
         persistence: 0.5
         centre: {x: 0, y: 0, z: 0}
         minValue: 1.25
-      ridgidNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-        weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-      ridgidNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-        weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-      ridgidNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-        weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-      ridgidNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-        weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-      ridgidNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-        weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-      ridgidNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-        weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-      ridgidNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-        weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-      ridgidNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
-        weightMultiplier: 0
-  - enabled: 0
-    useFirstLayerAsMask: 0
-    noiseSettings:
-      filterType: 0
-      simpleNoiseSettings:
-        strength: 0
-        numLayers: 0
-        baseRoughness: 0
-        roughness: 0
-        persistence: 0
-        centre: {x: 0, y: 0, z: 0}
-        minValue: 0
       ridgidNoiseSettings:
         strength: 0
         numLayers: 0
