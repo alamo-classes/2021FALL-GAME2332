@@ -1,22 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public double health;
-    public double fatigue;
-    public double fatigueDrainRate;
+    public Image healthBar;
+    public Image o2Bar;
+    public float maxHealth = 100f;
+    float health;
+    float healthDrainRate = 0f;
+
+    public float maxFatigue;
+    float fatigue;
+    public float fatigueDrainRate = .001f;
     bool isPlayerDead = false;
-    // Start is called before the first frame update
     void Start()
     {
-        
+        health = maxHealth;
+        fatigue = maxFatigue;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (healthDrainRate > 0)
+        {
+
+            health -= healthDrainRate;
+            healthBar.fillAmount = health / maxHealth;
+        }
         if (!(fatigueDrainRate <= 0))
         {
             fatigueDrain();
@@ -28,11 +40,13 @@ public class PlayerHealth : MonoBehaviour
     {
         //while not in oxygen area drain
         fatigue -= fatigueDrainRate;
+        o2Bar.fillAmount = fatigue / maxFatigue;
+
         if (fatigue <= 0)
         {
             //player loses health or enter no oxygen state
             Debug.Log("fatigue is 0");
-            health = 0;
+            healthDrainRate = .05f;
             fatigueDrainRate = 0;
         }
 
