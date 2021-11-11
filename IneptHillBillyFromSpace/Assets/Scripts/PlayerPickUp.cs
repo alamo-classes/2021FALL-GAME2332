@@ -132,12 +132,10 @@ public class PlayerPickUp : MonoBehaviour
 
     private void OnTriggerStay(Collider col) // sees what player is collinding with
     {
-        if(col.tag == "Collectable") // if it is tagged correctly
+        if(col.tag == "chassis" || col.tag == "engine" || col.tag == "Swheel" || col.tag == "tires") // if it is tagged correctly
         {
-            //==============================================================
-            // Can't you just use the carrying var to see if you have an empty slot?
-            // - JR
-            if (col.gameObject != slot1 || col.gameObject != slot2) // if it is not = to an object that is already being carried
+            
+            if (slot1 != null || slot2 != null) // 
             {
                 canPickUp = true;         // allow pickup
                 inRange = col.gameObject; // store object for reference later
@@ -153,7 +151,7 @@ public class PlayerPickUp : MonoBehaviour
 
     private void OnTriggerExit(Collider col) // sees what exits the players collider
     {
-        if (col.tag == "Collectable") // if it was a collectable make it so pickup is false
+        if (col.tag == "chassis" || col.tag == "engine" || col.tag == "Swheel" || col.tag == "tires") // if it was a collectable make it so pickup is false
         {
             canPickUp = false;
             inRange = null;
