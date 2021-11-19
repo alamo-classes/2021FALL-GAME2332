@@ -109,9 +109,11 @@ GameObject:
   - component: {fileID: 5637299203736284978}
   - component: {fileID: 5637299203736284979}
   - component: {fileID: 5637299203736284988}
+  - component: {fileID: -459243239819332297}
+  - component: {fileID: -8852515338082491682}
   m_Layer: 0
   m_Name: chassisCollectable
-  m_TagString: chassis
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,6 +215,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-459243239819332297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637299203736284989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d22a034bb27d4247b5dc209c121a4b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectType: 2
+--- !u!135 &-8852515338082491682
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637299203736284989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5637299204114983641
 GameObject:
   m_ObjectHideFlags: 0

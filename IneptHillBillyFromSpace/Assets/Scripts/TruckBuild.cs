@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Collectable;
 
 public class TruckBuild : MonoBehaviour
 {
@@ -51,33 +52,19 @@ public class TruckBuild : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "cabin")
+        if ( col.tag == "Collectable" )
         {
-            cabin = true;
-            Destroy(col.gameObject);
-        }
+            CollectibleType collectType = col.GetComponent<Collectable>().collectType;
 
-        if (col.tag == "chassis")
-        {
-            chassis = true;
-            Destroy(col.gameObject);
-        }
+            switch(collectType)
+            {
+                case CollectibleType.CABIN:     cabin = true;       break;
+                case CollectibleType.CHASSIS:   chassis = true;     break;
+                case CollectibleType.ENGINE:    engine = true;      break;
+                case CollectibleType.SWHEEL:    Swheel = true;      break;
+                case CollectibleType.TIRES:     tires = true;       break;
+            }
 
-        if (col.tag == "engine")
-        {
-            engine = true;
-            Destroy(col.gameObject);
-        }
-
-        if (col.tag == "Swheel")
-        {
-            Swheel = true;
-            Destroy(col.gameObject);
-        }
-
-        if (col.tag == "tires")
-        {
-            tires = true;
             Destroy(col.gameObject);
         }
     }
