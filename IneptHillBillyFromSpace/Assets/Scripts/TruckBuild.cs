@@ -17,30 +17,36 @@ public class TruckBuild : MonoBehaviour
     public GameObject SwheelGameobject;
     public GameObject tiresGameobject;
 
+    private PlayerPickUp playerInventory;
+
+    void Awake()
+    {
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickUp>();
+    }
    
     void Update()
     {
-        if (cabin)
+        if (cabin && !cabinGameobject.activeInHierarchy )
         {
             cabinGameobject.SetActive(true);
         }
 
-        if (chassis)
+        if (chassis && !chassisGameobject.activeInHierarchy )
         {
             chassisGameobject.SetActive(true);
         }
 
-        if (engine)
+        if (engine && !engineGameobject.activeInHierarchy)
         {
             engineGameobject.SetActive(true);
         }
 
-        if (Swheel)
+        if (Swheel && !SwheelGameobject.activeInHierarchy)
         {
             SwheelGameobject.SetActive(true);
         }
 
-        if (tires)
+        if (tires && !tiresGameobject.activeInHierarchy)
         {
             tiresGameobject.SetActive(true);
         }
@@ -66,6 +72,11 @@ public class TruckBuild : MonoBehaviour
             }
 
             Destroy(col.gameObject);
+
+            if ( playerInventory.carrying > 0 )
+            {
+               playerInventory.carrying--;
+            }
         }
     }
 }
