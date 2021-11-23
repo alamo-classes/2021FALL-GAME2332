@@ -10,11 +10,12 @@ public class BuildNavMesh : MonoBehaviour
     public float boundSize = 100f;
     public LayerMask navMeshLayer;
 
-    Vector3 bakePos;   
-    NavMeshDataInstance dataInstance;
+    private Vector3 bakePos;   
+    private NavMeshDataInstance dataInstance;
+    private int buildSettingsCount;
     NavMeshBuildSettings buildSettings;
-    List<NavMeshBuildSource> buildSources = new List<NavMeshBuildSource>();
-    Bounds bound;
+    private List<NavMeshBuildSource> buildSources = new List<NavMeshBuildSource>();
+    private Bounds bound;
 
     private void Awake()
     {
@@ -25,11 +26,7 @@ public class BuildNavMesh : MonoBehaviour
     void InitializeBuildSetting()
     {
         //build setting
-        buildSettings = NavMesh.GetSettingsByID(0);
-        buildSettings.agentClimb = 0.4f;
-        buildSettings.agentSlope = 45;
-        buildSettings.agentHeight = 2;
-        buildSettings.agentRadius = 0.5f;
+        buildSettings = NavMesh.GetSettingsByID(1);
 
         //set build source
         Bounds planetBound = new Bounds(planet.position,planet.localScale*2);
@@ -51,19 +48,41 @@ public class BuildNavMesh : MonoBehaviour
     {
         bakePos = transform.position;
         Vector3 gravityUp = (transform.position-planet.position).normalized;
-        
+
         dataInstance.Remove();
+
         Bounds localBound = new Bounds(Vector3.zero, new Vector3(1,1,1)*boundSize);// new Bounds(transform.position, boundSize *new Vector3(1, 1, 1));
         bound = new Bounds(transform.position, new Vector3(1, 1, 1) * boundSize);
+
+        //for ( int ind = 0; ind < buildSettingsCount; ind++ )
+        //{
+        //    NavMeshBuildSettings buildSettings = NavMesh.GetSettingsByID( ind );
+
+        //    NavMeshData navMeshData = NavMeshBuilder.BuildNavMeshData(buildSettings
+        //        , buildSources
+        //        , localBound
+        //        , transform.position
+        //        , Quaternion.FromToRotation(Vector3.up, gravityUp));
+        //    dataInstance = NavMesh.AddNavMeshData(navMeshData);
+
+        //    Debug.Log("NavMeshBuildSettings "+ ind +"is Valid : "+ dataInstance.valid );
+        //}
+
         NavMeshData navMeshData = NavMeshBuilder.BuildNavMeshData(buildSettings
-            ,buildSources
+            , buildSources
             , localBound
             , transform.position
             , Quaternion.FromToRotation(Vector3.up, gravityUp));
         dataInstance = NavMesh.AddNavMeshData(navMeshData);
     }
 
-    public Bounds GetNavmeshBounds() {
-        return bound;
+    public bool IsOnNavMesh( Transform ai )
+    {
+        if ( bound.Contains( ai.transform.position ) )
+        {
+            return true;
+        }
+
+        return false;
     }
 }

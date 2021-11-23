@@ -11,8 +11,10 @@ public class ChickenAI : MonoBehaviour
     public      float           collectibleRange;   //How close the chicken has to be to a search target before moving towards it
     private     GameObject      closestCollect;     //The closest gameObject from targets to the chicken
     private     float           closestCollectDist; //The distance b/w chicken and closestCollect
+    private     bool            hasDestination;
 
     private     Transform       player;         //Reference to the player
+    private     BuildNavMesh    buildNavMesh;   //Reference to the player's buildNavMesh script
     private     NavMeshAgent    agent;          //Reference to this obj's NavMesh Agent component
     private     float           agentSpeed;     //NavMesh movement speed. Maximum movement speed of enemy
     private     Animator        animator;       //Reference to this obj's Animator component
@@ -20,6 +22,7 @@ public class ChickenAI : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag( "Player" ).transform;
+        buildNavMesh = player.gameObject.GetComponent<BuildNavMesh>();
         agent  = GetComponent<NavMeshAgent>();
         //animator = GetComponent<Animator>();
 
@@ -31,55 +34,63 @@ public class ChickenAI : MonoBehaviour
         if ( agent != null )
         {
             agentSpeed = agent.speed;
+            agent.Warp(transform.position);
         }
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        //If there are targets AND the chicken is in range of a collectible
-        //  chicken moves towards the closest collectible
-        //Else
-        //  follow player
-        if ( targets != null && inCollectibleRange() )
+        if ( buildNavMesh.IsOnNavMesh( this.transform ) )
         {
-            Debug.Log("Chicken: Target in Range");
-
-            //If the chicken is farther away from it's agent stopping dist. from the closest collectible
-            //  move towards the collectible
+            agent.enabled = true;
+            //If there are targets AND the chicken is in range of a collectible
+            //  chicken moves towards the closest collectible
             //Else
-            //  stop moving
-            if ( Vector3.Distance(transform.position, closestCollect.transform.position) > agent.stoppingDistance )
+            //  follow player
+            if ( targets != null && inCollectibleRange() )
             {
-                agent.destination = closestCollect.transform.position;
-                agent.speed = agentSpeed;
-                Debug.Log("Chicken going to Target");
+                //Debug.Log("Chicken: Target in Range");
+
+                //If the chicken is farther away from it's agent stopping dist. from the closest collectible
+                //  move towards the collectible
+                //Else
+                //  stop moving
+                if ( Vector3.Distance( transform.position, closestCollect.transform.position ) > agent.stoppingDistance )
+                {
+                    agent.destination = closestCollect.transform.position;
+                    agent.speed = agentSpeed;
+                    //Debug.Log("Chicken going to Target");
+                }
+                else
+                {
+                    agent.speed = 0;
+                    //Debug.Log("Chicken stopping at Target");
+                }
             }
             else
             {
-                agent.speed = 0;
-                Debug.Log("Chicken stopping at Target");
+                //Debug.Log("Chicken: Target not in Range");
+                //If the chicken is about to be out of playerRange
+                //  chicken moves towards the player
+                //Else If the chicken is close enough to the player 
+                //  stop moving
+                if ( Vector3.Distance( transform.position, player.position ) > playerRange )
+                {
+                    agent.destination = player.position;
+                    agent.speed = agentSpeed;
+                    //Debug.Log("Chicken going to Player");
+                }
+                else if ( Vector3.Distance( transform.position, player.position ) < agent.stoppingDistance )
+                {
+                    agent.speed = 0;
+                    //Debug.Log("Chicken stopping at Player");
+                }
             }
         }
         else
         {
-            Debug.Log("Chicken: Target not in Range");
-            //If the chicken is about to be out of playerRange
-            //  chicken moves towards the player
-            //Else If the chicken is close enough to the player 
-            //  stop moving
-            if ( Vector3.Distance(transform.position, player.position) > playerRange )
-            {
-                agent.destination = player.position;
-                agent.speed = agentSpeed;
-
-                Debug.Log("Chicken going to Player");
-            }
-            else if ( Vector3.Distance(transform.position, player.position) < agent.stoppingDistance )
-            {
-                agent.speed = 0;
-                Debug.Log("Chicken stopping at Player");
-            }
+            agent.enabled = false;
         }
     }
 
