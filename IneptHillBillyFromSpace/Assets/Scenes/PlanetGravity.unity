@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 289234400}
   - component: {fileID: 289234399}
   - component: {fileID: 289234403}
+  - component: {fileID: 289234398}
   m_Layer: 0
   m_Name: ChickenTemp
   m_TagString: Untagged
@@ -240,6 +241,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!54 &289234398
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289234397}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &289234399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +331,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289234397}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 043b615c8e89a464a8bef2ab0ad55281, type: 3}
   m_Name: 
