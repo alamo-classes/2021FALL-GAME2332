@@ -19,24 +19,6 @@ MonoBehaviour:
   dropPos: {fileID: 4241498044345366002}
   slot1: {fileID: 0}
   slot2: {fileID: 0}
---- !u!114 &4400446668480290956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2174530101826551872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a220616e5143a5f418b3605bfa39f3b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planet: {fileID: 0}
-  bakeTerm: 20
-  boundSize: 100
-  navMeshLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &4527555139964507865
 GameObject:
   m_ObjectHideFlags: 0

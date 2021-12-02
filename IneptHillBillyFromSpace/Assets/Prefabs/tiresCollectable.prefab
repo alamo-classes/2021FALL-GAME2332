@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 3227415431158878351}
   - component: {fileID: 5571767041130322152}
   - component: {fileID: 8019848183644091166}
+  - component: {fileID: 4305792308736436067}
   m_Layer: 0
   m_Name: tiresCollectable
   m_TagString: Collectable
@@ -285,6 +286,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.8909492, y: 1.4209855, z: 2.9245071}
   m_Center: {x: 2.4454746, y: -0.03007114, z: -0.9622535}
+--- !u!114 &4305792308736436067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132633624677180751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043b615c8e89a464a8bef2ab0ad55281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractor: {fileID: 0}
+  rigidBody: {fileID: 0}
 --- !u!1 &9132633624694793856
 GameObject:
   m_ObjectHideFlags: 0
