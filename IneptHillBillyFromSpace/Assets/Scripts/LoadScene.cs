@@ -7,6 +7,13 @@ public class LoadScene : MonoBehaviour
 {
     public string SceneName;
 
+
+    private void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void loadscene()
     {
         SceneManager.LoadScene(SceneName);

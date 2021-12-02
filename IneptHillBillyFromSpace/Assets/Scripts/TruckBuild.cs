@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TruckBuild : MonoBehaviour
 {
@@ -43,6 +44,14 @@ public class TruckBuild : MonoBehaviour
         {
             tiresGameobject.SetActive(true);
         }
+
+
+
+        if(cabin && chassis && engine && Swheel && tires)
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+
         
     }
 
