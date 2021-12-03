@@ -7,6 +7,7 @@ public class Collectable : MonoBehaviour
     public enum CollectibleType { CABIN, ENGINE, CHASSIS, SWHEEL, TIRES };
 
     public CollectibleType collectType;
+    public bool            isPickedUp = false;
 
     //private void OnCollisionEnter(Collision col)
     //{

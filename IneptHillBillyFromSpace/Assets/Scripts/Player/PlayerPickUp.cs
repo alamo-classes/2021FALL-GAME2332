@@ -53,81 +53,49 @@ public class PlayerPickUp : MonoBehaviour
 
 
 
-    void AddToPlayer(GameObject obj) // "picks up" object 
+    void AddToPlayer( GameObject obj ) // "picks up" object 
     {
+        obj.GetComponent<Collider>().enabled = false; // Disable the collider
+        obj.GetComponent<GravityBody>().enabled = false; // disable physics
+        obj.GetComponent<Collectable>().isPickedUp = true;
+        obj.transform.SetParent(transform); // set player as parent
+        carrying++; // increment the carry amount
+
         if (carrying == 0)
         {
-          
             slot1 = obj;
-
-            obj.GetComponent<Collider>().enabled = false; // Disable the collider
-
-            obj.GetComponent<Rigidbody>().useGravity = false; // disable physics
-
             obj.transform.position = t1.position; // set position to player holding spot
-
-            obj.transform.SetParent(transform); // set player as parent
-
-
-            carrying++; // increment the carry amount
-            return;
         }
         else if (carrying == 1)
         {
-
             slot2 = obj;
-
-            obj.GetComponent<Collider>().enabled = false; // Disable the collider
-
-            obj.GetComponent<Rigidbody>().useGravity = false; // disable physics
-
             obj.transform.position = t2.position; // set position to player holding spot
-
-            obj.transform.SetParent(transform); // set player as parent
-
-
-            carrying++;
         }
 
     }
 
     void DropItem() // drops the item that is held
     {
+        GameObject droppedObj = null;
 
-        if(carrying == 2)
+        if (carrying == 2)
         {
-            slot2.GetComponent<Collider>().enabled = true; // Disable the collider
-
-            slot2.GetComponent<Rigidbody>().useGravity = true; // disable physics
-
-            slot2.transform.position = dropPos.position; // set position to be dropped
-
-            slot2.transform.SetParent(null); // make object child to nothing 
-
+            droppedObj = slot2;
             slot2 = null; // make storage empty for new item
-
-            carrying--;
         }
         else if (carrying == 1)
         {
-            slot1.GetComponent<Collider>().enabled = true; // Disable the collider
-
-            slot1.GetComponent<Rigidbody>().useGravity = true; // disable physics
-
-            slot1.transform.position = dropPos.position; // set position to be dropped
-
-            slot1.transform.SetParent(null); // make object child to nothing 
-
+            droppedObj = slot1;
             slot1 = null; // make storage empty for new item
-
-            carrying--;
         }
 
-
-
-
-
-    }
+        droppedObj.GetComponent<Collider>().enabled = true; // reenable the collider
+        droppedObj.GetComponent<GravityBody>().enabled = true; // reenable physics
+        droppedObj.GetComponent<Collectable>().isPickedUp = false;
+        droppedObj.transform.SetParent(null); // make object child to nothing 
+        droppedObj.transform.position = dropPos.position; // set position to be dropped
+        carrying--; // decrement the carry amount
+   }
 
 
     private void OnTriggerStay(Collider col) // sees what player is collinding with

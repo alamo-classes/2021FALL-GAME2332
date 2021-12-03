@@ -105,20 +105,23 @@ public class ChickenAI : MonoBehaviour
         if ( targets != null )
         {
             closestObj = targets[0];
-            float closestObjDist = Vector3.Distance( transform.position, closestObj.transform.position );
+            float closestObjDist = Vector3.Distance(transform.position, closestObj.transform.position);
 
             foreach ( GameObject currentObj in targets )
             {
                 if ( currentObj != null )
                 {
-                    float currentObjDist = Vector3.Distance( transform.position, currentObj.transform.position );
-
-                    //If the closest object distance is greater than the current obj's distance
-                    //  set the closest obj and its distance to currentObj
-                    if ( closestObjDist > currentObjDist )
+                    if ( !(currentObj.GetComponent<Collectable>().isPickedUp) )
                     {
-                        closestObj = currentObj;
-                        closestObjDist = currentObjDist;
+                       float currentObjDist = Vector3.Distance(transform.position, currentObj.transform.position);
+
+                       //If the closest object distance is greater than the current obj's distance
+                       //  set the closest obj and its distance to currentObj
+                       if ( closestObjDist > currentObjDist )
+                       {
+                          closestObj = currentObj;
+                          closestObjDist = currentObjDist;
+                       }
                     }
                 }
             }
