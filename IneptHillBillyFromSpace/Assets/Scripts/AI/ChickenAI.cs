@@ -21,7 +21,7 @@ public class ChickenAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag( "Player" ).transform;
         agent  = GetComponent<NavMeshAgent>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         if ( searchTag != null )
         {
@@ -32,6 +32,18 @@ public class ChickenAI : MonoBehaviour
         {
             agentSpeed = agent.speed;
             agent.Warp(transform.position);
+        }
+    }
+
+    void Update()
+    {
+        if ( agent.speed == 0 )
+        {
+            playIdleAnimation();
+        }
+        else
+        {
+            playWalkingAnimation();
         }
     }
 
@@ -47,7 +59,7 @@ public class ChickenAI : MonoBehaviour
             //  follow player
             if ( targets != null && inCollectibleRange() )
             {
-                Debug.Log("Chicken: Target in Range");
+                //Debug.Log("Chicken: Target in Range");
 
                 //If the chicken is farther away from it's agent stopping dist. from the closest collectible
                 //  move towards the collectible
@@ -76,7 +88,7 @@ public class ChickenAI : MonoBehaviour
                 {
                     agent.destination = player.position;
                     agent.speed = agentSpeed;
-                    Debug.Log("Chicken going to Player");
+                    //Debug.Log("Chicken going to Player");
                 }
                 else if ( Vector3.Distance( transform.position, player.position ) < agent.stoppingDistance )
                 {
@@ -91,6 +103,10 @@ public class ChickenAI : MonoBehaviour
         }
     }
 
+    //=============================================================================================================================
+    // inCollectibleRange - finds the closest collectible in targets list and returns a boolean of whether the collectible 
+    //      is within collectible range
+    //
     private bool inCollectibleRange()
     {
         getClosestCollectible();
@@ -98,6 +114,9 @@ public class ChickenAI : MonoBehaviour
         return closestCollectDist <= collectibleRange;
     }
 
+    //===============================================================================================================================
+    // getClosestCollectible - sets the closestCollectible variable to the collectible closest to the chicken and returns it
+    //
     private GameObject getClosestCollectible()
     {
         GameObject closestObj = null;
@@ -131,5 +150,37 @@ public class ChickenAI : MonoBehaviour
         }
 
         return closestObj;
+    }
+
+    private void playIdleAnimation()
+    {
+        if ( animator != null )
+        {
+            animator.SetBool( "isWalking", false );     //Turns off walking animation
+
+            string animationName;
+            int animationIndex = Random.Range( 0, 9 );  //Random number b/w 0 and the number of idle animations + eating animation
+                                                        //  range is inclusives on both ends
+            if ( animationIndex < 9 )
+            {
+                animationName = "idle_"+ animationIndex;
+            }
+            else
+            {
+                animationName = "eat";
+            }
+
+            animator.SetTrigger( animationName );
+            //Debug.Log( "Playing "+ animationName + " Idle animation" );
+        }
+    }
+
+    private void playWalkingAnimation()
+    {
+        if ( animator != null )
+        {
+            animator.SetBool( "isWalking", true );
+            //Debug.Log( "Playing Walking animation" );
+        }
     }
 }
