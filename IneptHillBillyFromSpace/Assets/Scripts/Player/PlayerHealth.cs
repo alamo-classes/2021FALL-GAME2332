@@ -65,4 +65,12 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player is dead");
         return;
     }
+    /*void OnCollisionEnter(Collision col)
+    {
+        if (col.gameobject.tag == "Enemy")
+        {
+            Debug.Log("player hit");
+            health -= 5;
+        }
+    }*/
 }
