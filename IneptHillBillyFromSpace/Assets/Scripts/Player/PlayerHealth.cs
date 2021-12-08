@@ -26,11 +26,12 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+
+        healthBar.fillAmount = health / maxHealth;
+
         if (healthDrainRate > 0)
         {
-
             health -= healthDrainRate;
-            healthBar.fillAmount = health / maxHealth;
         }
         if (!(fatigueDrainRate <= 0))
         {
@@ -73,6 +74,16 @@ public class PlayerHealth : MonoBehaviour
 
         return;
     }
+
+
+    public void takeDamage(float damage)
+    {
+        health -= damage;
+    }
+
+
+
+
     /*void OnCollisionEnter(Collision col)
     {
         if (col.gameobject.tag == "Enemy")
