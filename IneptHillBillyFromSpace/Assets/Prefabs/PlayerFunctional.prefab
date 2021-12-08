@@ -121,6 +121,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7463509936630470048, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+      propertyPath: maxFatigue
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463509936630470048, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+      propertyPath: fatigueDrainRate
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
 --- !u!1 &2174530101826551872 stripped

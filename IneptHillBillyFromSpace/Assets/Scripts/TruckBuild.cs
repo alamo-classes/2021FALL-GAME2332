@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Collectable;
 
 public class TruckBuild : MonoBehaviour
 {
@@ -17,30 +18,36 @@ public class TruckBuild : MonoBehaviour
     public GameObject SwheelGameobject;
     public GameObject tiresGameobject;
 
+    private PlayerPickUp playerInventory;
    
+    void Awake()
+    {
+        playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPickUp>();
+    }
+
     void Update()
     {
-        if (cabin)
+        if (cabin && !cabinGameobject.activeInHierarchy )
         {
             cabinGameobject.SetActive(true);
         }
 
-        if (chassis)
+        if (chassis && !chassisGameobject.activeInHierarchy)
         {
             chassisGameobject.SetActive(true);
         }
 
-        if (engine)
+        if (engine && !engineGameobject.activeInHierarchy)
         {
             engineGameobject.SetActive(true);
         }
 
-        if (Swheel)
+        if (Swheel && !SwheelGameobject.activeInHierarchy)
         {
             SwheelGameobject.SetActive(true);
         }
 
-        if (tires)
+        if (tires && !tiresGameobject.activeInHierarchy)
         {
             tiresGameobject.SetActive(true);
         }
@@ -55,39 +62,27 @@ public class TruckBuild : MonoBehaviour
         
     }
 
-
-
-
     private void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "cabin")
+        if ( col.tag == "Collectable" )
         {
-            cabin = true;
-            Destroy(col.gameObject);
-        }
+            CollectibleType collectible = col.GetComponent<Collectable>().collectType;
 
-        if (col.tag == "chassis")
-        {
-            chassis = true;
-            Destroy(col.gameObject);
-        }
+            switch( collectible )
+            {
+                case CollectibleType.CABIN:     cabin = true;   break;
+                case CollectibleType.ENGINE:    engine = true;  break;
+                case CollectibleType.CHASSIS:   chassis = true; break;
+                case CollectibleType.SWHEEL:    Swheel = true;  break;
+                case CollectibleType.TIRES:     tires = true;   break;
+            }
 
-        if (col.tag == "engine")
-        {
-            engine = true;
-            Destroy(col.gameObject);
-        }
+            Destroy( col.gameObject );
 
-        if (col.tag == "Swheel")
-        {
-            Swheel = true;
-            Destroy(col.gameObject);
-        }
-
-        if (col.tag == "tires")
-        {
-            tires = true;
-            Destroy(col.gameObject);
+            if ( playerInventory.carrying > 0 )
+            {
+                playerInventory.carrying--;
+            }
         }
     }
 }

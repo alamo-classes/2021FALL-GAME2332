@@ -59,7 +59,7 @@ public class PlayerPickUp : MonoBehaviour
         obj.GetComponent<GravityBody>().enabled = false; // disable physics
         obj.GetComponent<Collectable>().isPickedUp = true;
         obj.transform.SetParent(transform); // set player as parent
-        carrying++; // increment the carry amount
+        
 
         if (carrying == 0)
         {
@@ -72,6 +72,7 @@ public class PlayerPickUp : MonoBehaviour
             obj.transform.position = t2.position; // set position to player holding spot
         }
 
+        carrying++; // increment the carry amount
     }
 
     void DropItem() // drops the item that is held
