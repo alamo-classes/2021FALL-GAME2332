@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.SceneManagement;
+
 public class PlayerHealth : MonoBehaviour
 {
+
     public Image healthBar;
     public Image o2Bar;
     public float maxHealth = 100f;
@@ -33,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
         {
             fatigueDrain();
         }
+
+
             playerStatus();
     }
 
@@ -63,6 +68,9 @@ public class PlayerHealth : MonoBehaviour
         }
         isPlayerDead = true;
         Debug.Log("Player is dead");
+
+        SceneManager.LoadScene("LoseScene");
+
         return;
     }
     /*void OnCollisionEnter(Collision col)
