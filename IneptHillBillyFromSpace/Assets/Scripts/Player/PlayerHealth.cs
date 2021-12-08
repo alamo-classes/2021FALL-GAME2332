@@ -73,4 +73,12 @@ public class PlayerHealth : MonoBehaviour
 
         return;
     }
+    /*void OnCollisionEnter(Collision col)
+    {
+        if (col.gameobject.tag == "Enemy")
+        {
+            Debug.Log("player hit");
+            health -= 5;
+        }
+    }*/
 }
