@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5928fab2c3edb42b6687f68d235942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Main
+  SceneName: MainMenu
 --- !u!114 &217505301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -906,7 +906,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click to restart
+  m_Text: Main Menu
 --- !u!222 &1887657990
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -9,9 +9,14 @@ public class GravityBody : MonoBehaviour
 
     void Awake()
     {
-      //Don't allow the unity engine to use these since we're handling them
-      rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
-      rigidBody.useGravity = false;
+        rigidBody = GetComponent<Rigidbody>();
+
+        if ( rigidBody != null )
+        {
+            //Don't allow the unity engine to use these since we're handling them
+            rigidBody.constraints = RigidbodyConstraints.FreezeRotation;
+            rigidBody.useGravity = false;
+        }
     }
 
     // Update is called once per frame

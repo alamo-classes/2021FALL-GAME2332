@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public enum CollectibleType { CABIN, ENGINE, CHASSIS, SWHEEL, TIRES };
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
+    public CollectibleType collectType;
+    public bool            isPickedUp = false;
 
-    private void OnCollisionEnter(Collision col)
-    {
-        Destroy(this.gameObject);
-        Debug.Log("Deleted " + gameObject.name);
-    }
+    //private void OnCollisionEnter(Collision col)
+    //{
+    //    Destroy(this.gameObject);
+    //    Debug.Log("Deleted " + gameObject.name);
+    //}
 }
