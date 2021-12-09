@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1311237972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2174530101826551872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f406affc57836d5419b7e9ab789aef63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carrying: 0
+  canPickUp: 0
+  t1: {fileID: 6631516373593402304}
+  t2: {fileID: 693976421473711304}
+  dropPos: {fileID: 4241498044345366002}
+  slot1: {fileID: 0}
+  slot2: {fileID: 0}
 --- !u!1 &4527555139964507865
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +30,7 @@ GameObject:
   - component: {fileID: 4527555139964507866}
   m_Layer: 0
   m_Name: PlayerFunctional
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +67,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2375755396367152664, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2375755396367152664, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -83,6 +102,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2375755396367152665, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+      propertyPath: walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375755396367152665, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+      propertyPath: sprintSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2375755396367152665, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
       propertyPath: jumpSurfaces.m_Bits
       value: 256
       objectReference: {fileID: 0}
@@ -94,10 +121,38 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7463509936630470048, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+      propertyPath: maxFatigue
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7463509936630470048, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+      propertyPath: fatigueDrainRate
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+--- !u!1 &2174530101826551872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2375755396367152671, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+  m_PrefabInstance: {fileID: 4527555139676567135}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2174530101826551879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2375755396367152664, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+  m_PrefabInstance: {fileID: 4527555139676567135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &693976421473711304 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3995929312129024663, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+  m_PrefabInstance: {fileID: 4527555139676567135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6631516373593402304 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7121029289492012447, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
+  m_PrefabInstance: {fileID: 4527555139676567135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4241498044345366002 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 290984201301410733, guid: b9382f24bf014eb448cdac9e2d8989d5, type: 3}
   m_PrefabInstance: {fileID: 4527555139676567135}
   m_PrefabAsset: {fileID: 0}

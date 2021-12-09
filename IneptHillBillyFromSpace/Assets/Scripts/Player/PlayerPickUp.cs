@@ -53,89 +53,57 @@ public class PlayerPickUp : MonoBehaviour
 
 
 
-    void AddToPlayer(GameObject obj) // "picks up" object 
+    void AddToPlayer( GameObject obj ) // "picks up" object 
     {
+        obj.GetComponent<Collider>().enabled = false; // Disable the collider
+        obj.GetComponent<GravityBody>().enabled = false; // disable physics
+        obj.GetComponent<Collectable>().isPickedUp = true;
+        obj.transform.SetParent(transform); // set player as parent
+        
+
         if (carrying == 0)
         {
-          
             slot1 = obj;
-
-            obj.GetComponent<Collider>().enabled = false; // Disable the collider
-
-            obj.GetComponent<Rigidbody>().useGravity = false; // disable physics
-
             obj.transform.position = t1.position; // set position to player holding spot
-
-            obj.transform.SetParent(transform); // set player as parent
-
-
-            carrying++; // increment the carry amount
-            return;
         }
         else if (carrying == 1)
         {
-
             slot2 = obj;
-
-            obj.GetComponent<Collider>().enabled = false; // Disable the collider
-
-            obj.GetComponent<Rigidbody>().useGravity = false; // disable physics
-
             obj.transform.position = t2.position; // set position to player holding spot
-
-            obj.transform.SetParent(transform); // set player as parent
-
-
-            carrying++;
         }
 
+        carrying++; // increment the carry amount
     }
 
     void DropItem() // drops the item that is held
     {
+        GameObject droppedObj = null;
 
-        if(carrying == 2)
+        if (carrying == 2)
         {
-            slot2.GetComponent<Collider>().enabled = true; // Disable the collider
-
-            slot2.GetComponent<Rigidbody>().useGravity = true; // disable physics
-
-            slot2.transform.position = dropPos.position; // set position to be dropped
-
-            slot2.transform.SetParent(null); // make object child to nothing 
-
+            droppedObj = slot2;
             slot2 = null; // make storage empty for new item
-
-            carrying--;
         }
         else if (carrying == 1)
         {
-            slot1.GetComponent<Collider>().enabled = true; // Disable the collider
-
-            slot1.GetComponent<Rigidbody>().useGravity = true; // disable physics
-
-            slot1.transform.position = dropPos.position; // set position to be dropped
-
-            slot1.transform.SetParent(null); // make object child to nothing 
-
+            droppedObj = slot1;
             slot1 = null; // make storage empty for new item
-
-            carrying--;
         }
 
-
-
-
-
-    }
+        droppedObj.GetComponent<Collider>().enabled = true; // reenable the collider
+        droppedObj.GetComponent<GravityBody>().enabled = true; // reenable physics
+        droppedObj.GetComponent<Collectable>().isPickedUp = false;
+        droppedObj.transform.SetParent(null); // make object child to nothing 
+        droppedObj.transform.position = dropPos.position; // set position to be dropped
+        carrying--; // decrement the carry amount
+   }
 
 
     private void OnTriggerStay(Collider col) // sees what player is collinding with
     {
-        if(col.tag == "chassis" || col.tag == "engine" || col.tag == "Swheel" || col.tag == "tires") // if it is tagged correctly
+        if(col.tag == "Collectable") // if it is tagged correctly
         {
-            
-            if (slot1 != null || slot2 != null) // 
+            if (slot1 == null || slot2 == null) // 
             {
                 canPickUp = true;         // allow pickup
                 inRange = col.gameObject; // store object for reference later
@@ -151,7 +119,7 @@ public class PlayerPickUp : MonoBehaviour
 
     private void OnTriggerExit(Collider col) // sees what exits the players collider
     {
-        if (col.tag == "chassis" || col.tag == "engine" || col.tag == "Swheel" || col.tag == "tires") // if it was a collectable make it so pickup is false
+        if (col.tag == "Collectable" ) // if it was a collectable make it so pickup is false
         {
             canPickUp = false;
             inRange = null;
