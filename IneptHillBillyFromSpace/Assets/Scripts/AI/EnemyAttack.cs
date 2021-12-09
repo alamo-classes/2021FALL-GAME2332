@@ -10,11 +10,17 @@ public class EnemyAttack : MonoBehaviour
 
     float time = 0;
 
+    private Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;
-
     }
 
 
@@ -28,9 +34,17 @@ public class EnemyAttack : MonoBehaviour
             PlayerHealth pHealth = col.gameObject.GetComponent<PlayerHealth>();
 
             pHealth.takeDamage(attackDamage);
+            playAttackAnimation();
             time = 0;
         }
     }
 
+    void playAttackAnimation()
+    {
+        if ( animator != null )
+        {
+            animator.SetTrigger( "Attack" );
+        }
+    }
 
 }

@@ -14,9 +14,12 @@ public class AINavigation : MonoBehaviour
     public bool Idle = true; // bool for if the enemy is idle
     public float time = 0f; // used to count time
 
+    private Animator animator;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>(); // assign the nav mesh
+        animator = GetComponent<Animator>();
 
         time = Random.Range(0.0f, 1.2f); // choose random starting time so that groups of enemies dont all move in unison
 
@@ -35,6 +38,20 @@ public class AINavigation : MonoBehaviour
             }
         }
 
+        //Play the animations depending on movespeed
+        if ( animator != null )
+        {
+            if ( agent.speed == 0 )
+            {
+                animator.SetBool( "IsIdle", true );
+                animator.SetBool( "IsMoving", false );
+            }
+            else
+            {
+                animator.SetBool( "IsIdle", false );
+                animator.SetBool( "IsMoving", true );
+            }
+        }
      
 
     }
