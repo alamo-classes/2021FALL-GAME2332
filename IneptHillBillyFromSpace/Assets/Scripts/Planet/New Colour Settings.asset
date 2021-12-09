@@ -177,8 +177,8 @@ MonoBehaviour:
       tintPercent: 0
     - gradient:
         serializedVersion: 2
-        key0: {r: 0.3301887, g: 0, b: 0, a: 1}
-        key1: {r: 0.3301887, g: 0, b: 0, a: 1}
+        key0: {r: 0.6392157, g: 0, b: 0, a: 1}
+        key1: {r: 0.6392157, g: 0, b: 0, a: 1}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -231,8 +231,8 @@ MonoBehaviour:
     blendAmount: 0
   oceanColour:
     serializedVersion: 2
-    key0: {r: 0.6509434, g: 0.033775367, b: 0.033775367, a: 1}
-    key1: {r: 0.6509434, g: 0.033775367, b: 0.033775367, a: 1}
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
     key2: {r: 1, g: 0.6825919, b: 0, a: 0}
     key3: {r: 1, g: 0.7327648, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
