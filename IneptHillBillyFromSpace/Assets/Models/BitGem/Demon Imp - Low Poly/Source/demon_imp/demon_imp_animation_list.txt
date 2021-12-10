@@ -1,0 +1,24 @@
+Demon Imp Animation List
+
+frame: 0001-0005 bind pose
+frame: 0006-0010 idle pose
+frame: 0060-0109 idle (loop)
+frame: 0181-0202 walk (loop)
+frame: 0245-0260 run (loop)
+frame: 0295-0310 run scared (loop)
+frame: 0351-0372 strafe left (loop)
+frame: 0421-0442 strafe right (loop)
+frame: 0491-0512 shuffle left (loop)
+frame: 0561-0582 shuffle right (loop)
+frame: 0631-0652 backpedal (loop)
+frame: 0680-0705 get hit from right
+frame: 0710-0735 get hit from left
+frame: 0740-0765 get hit from front
+frame: 0770-0785 attack 1
+frame: 0790-0812 attack 2
+frame: 0820-0866 attack 3
+frame: 0870-0905 jump
+frame: 0910-0977 spawn
+frame: 0980-1039 death
+frame: 1045-1086 cast magic
+
