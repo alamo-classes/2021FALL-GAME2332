@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4731952732181114805}
   - component: {fileID: 1533024336277294187}
   - component: {fileID: 9155946877421415930}
+  - component: {fileID: 6442246350103742783}
   m_Layer: 0
   m_Name: SwheelCollectable
   m_TagString: Collectable
@@ -161,6 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectType: 3
+  isPickedUp: 0
 --- !u!135 &9155946877421415930
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -174,6 +176,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6442246350103742783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731952732181114810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043b615c8e89a464a8bef2ab0ad55281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attractor: {fileID: 0}
+  rigidBody: {fileID: 0}
 --- !u!1 &4731952732657411676
 GameObject:
   m_ObjectHideFlags: 0
